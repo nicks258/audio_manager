@@ -174,23 +174,23 @@ public class MediaPlayerService extends Service {
         // 设置点击通知结果
 //        Intent intent = new Intent("android.flutter.audio_manager.activity");
         Intent intent = new Intent(this, AudioManagerPlugin.class);
-        PendingIntent contentPendingIntent = PendingIntent.getActivity(this, CONTENT_PENDING_REQUESTS, intent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent contentPendingIntent = PendingIntent.getActivity(this, CONTENT_PENDING_REQUESTS, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // 自定义布局
         views = new RemoteViews(getPackageName(), R.layout.layout_mediaplayer);
         // 下一首
         Intent intentNext = new Intent(ACTION_NEXT);
-        PendingIntent nextPendingIntent = PendingIntent.getBroadcast(this, NEXT_PENDING_REQUESTS, intentNext, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent nextPendingIntent = PendingIntent.getBroadcast(this, NEXT_PENDING_REQUESTS, intentNext, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.iv_next, nextPendingIntent);
 
         // 暂停/播放
         Intent intentPlay = new Intent(ACTION_PLAY_OR_PAUSE);
-        PendingIntent playPendingIntent = PendingIntent.getBroadcast(this, PLAY_PENDING_REQUESTS, intentPlay, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent playPendingIntent = PendingIntent.getBroadcast(this, PLAY_PENDING_REQUESTS, intentPlay, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.iv_pause, playPendingIntent);
 
         // 停止
         Intent intentStop = new Intent(ACTION_STOP);
-        PendingIntent stopPendingIntent = PendingIntent.getBroadcast(this, STOP_PENDING_REQUESTS, intentStop, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent stopPendingIntent = PendingIntent.getBroadcast(this, STOP_PENDING_REQUESTS, intentStop, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.iv_cancel, stopPendingIntent);
 
         builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
